@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 import intlTelInput from 'intl-tel-input'
+import Vuetify from 'vuetify'
 
 Vue.use(intlTelInput)
 Vue.use(VueResource)
+Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

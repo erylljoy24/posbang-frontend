@@ -3,25 +3,14 @@
   	<!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top" style="padding-bottom: 3px; padding-top: 3px;">
       <div class="container">
-        <a class="navbar-brand" href="#" v-on:click.prevent="navigateTo('/')">Lucent News</a>
+        <a class="navbar-brand" href="#" v-on:click.prevent="navigateTo('/')">Food Order</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <button class="btn btn-link nav-link" v-on:click.prevent="navigateTo('/')">
-                Home
-              </button>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+            <li class="nav-item" data-toggle="modal" data-target="#exampleModal">
+              <a class="nav-link cd-signin" href="#">Cart</a>
             </li>
             <li class="nav-item" data-toggle="modal" data-target="#exampleModal">
               <a class="nav-link cd-signin" href="#">Sign in</a>
