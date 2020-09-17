@@ -23,7 +23,7 @@
                   <div class="card-body">
                     <h2 class="card-title">{{ item.title }}</h2>
                 <!--    <a href="#" class="btn btn-primary" v-link="{path:'ArticleItemComponent'}">Read More &rarr; </a> -->
-                    <a class="btn btn-primary" v-on:click.prevent="navigateTo('foods')">Select</a>
+                    <a class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="navigateTo('foods')">Select</a>
                   </div>
                 </div>
                 
