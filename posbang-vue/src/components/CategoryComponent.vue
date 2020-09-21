@@ -19,11 +19,12 @@
             <v-row>
               <v-col v-for="item in items" :key="item" cols="6" >
                 <div class="card mb-4">
-                  <img :src="item.images" class="image" alt="lorem" width="100%" height="120%">
+                  <img :src="item.image_url" class="image" alt="lorem" style="height:300px; width:100%">
                   <div class="card-body">
-                    <h2 class="card-title">{{ item.title }}</h2>
+                    <h2 class="card-title">{{ item.name }}</h2>
                 <!--    <a href="#" class="btn btn-primary" v-link="{path:'ArticleItemComponent'}">Read More &rarr; </a> -->
-                    <a class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="navigateTo('foods')">Select</a>
+                    <!-- <a class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="navigateTo('foods', item.id)">Select</a> -->
+                    <router-link class="btn btn-primary" :to="{ name: 'foods', params: {cat_id: item.id } }">Select</router-link>
                   </div>
                 </div>
                 
@@ -65,31 +66,36 @@
 
 <script>
 export default {
-  mounted(){
-    const axios = require('axios');
-    axios.get(`https://pacific-escarpment-86579.herokuapp.com/api/categories`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.items = response;
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
-  },
+  
   data () {
     return {
       items: []
     }
   },
   methods:{
-    navigateTo: function (nav) {
+    
+    navigateTo: function (nav, id) {
       // Do what you want here.
       // this.saveTheThing()
-      console.log(nav)
+      console.log(id)
       this.$router.push({
-          path: nav
+          path: nav,
+          params: { cat_id: id }
       })
     }
+  },
+  mounted(){
+    const axios = require('axios');
+    axios.get(`https://pacific-escarpment-86579.herokuapp.com/api/categories`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.items = response.data;
+      
+      
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
   }
 }
 </script>

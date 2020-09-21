@@ -15,8 +15,8 @@ export default new Router({
     	component: CategoryComponent
     },
     {
-    	path: '/foods',
-    	name: 'FoodComponent',
+    	path: '/foods/:cat_id',
+    	name: 'foods',
     	component: FoodComponent
     },
     {

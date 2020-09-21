@@ -19,9 +19,9 @@
             <v-row>
               <v-col v-for="item in items" :key="item" cols="6" >
                 <div class="card mb-4">
-                  <img :src="item.images" class="image" alt="lorem" width="100%" height="120%">
+                  <img :src="item.image_url" class="image" alt="lorem" style="height:300px; width:100%">
                   <div class="card-body">
-                    <h2 class="card-title">{{ item.title }}</h2>
+                    <h2 class="card-title">{{ item.name }}</h2>
                 <!--    <a href="#" class="btn btn-primary" v-link="{path:'ArticleItemComponent'}">Read More &rarr; </a> -->
                     <a class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="navigateTo('ArticleItemComponent')">Add to Cart</a>
                   </div>
@@ -32,14 +32,6 @@
           </v-container>
           
           <!-- Pagination -->
-          <ul class="pagination justify-content-center mb-4">
-            <li class="page-item">
-              <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-          </ul>
 
         </div>
 
@@ -65,60 +57,9 @@
 
 <script>
 export default {
-  
   data () {
     return {
-      items: [
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burger", 
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burger", 
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burger", 
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burger", 
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burger", 
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burger", 
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burger", 
-          content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        }
-      ]
+      items: []
     }
   },
   methods:{
@@ -130,7 +71,20 @@ export default {
           path: nav
       })
     }
-  }
+  },
+  mounted(){
+    const axios = require('axios');
+    axios.get(`https://pacific-escarpment-86579.herokuapp.com/api/menu/`+this.$route.params.cat_id)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      console.log(response)
+      this.items = response.data;
+      console.log(response.data)
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
 }
 </script>
 
