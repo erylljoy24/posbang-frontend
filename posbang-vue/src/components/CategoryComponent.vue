@@ -65,41 +65,20 @@
 
 <script>
 export default {
-  
+  mounted(){
+    const axios = require('axios');
+    axios.get(`https://pacific-escarpment-86579.herokuapp.com/api/categories`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.items = response;
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
   data () {
     return {
-      items: [
-        {
-          images: "http://placehold.it/750x300",
-          title: "Drinks", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burgers", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Burger", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "Spaghetti", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        },
-        {
-          images: "http://placehold.it/750x300",
-          title: "All in One", 
-          postedOn: "January 1, 2017",
-          postedBy: "John Doe"
-        }
-      ]
+      items: []
     }
   },
   methods:{

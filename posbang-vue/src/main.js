@@ -6,6 +6,8 @@ import router from './router'
 import VueResource from 'vue-resource'
 import intlTelInput from 'intl-tel-input'
 import Vuetify from 'vuetify'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 Vue.use(intlTelInput)
 Vue.use(VueResource)
