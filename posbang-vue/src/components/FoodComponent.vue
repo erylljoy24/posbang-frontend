@@ -23,7 +23,8 @@
                   <div class="card-body">
                     <h2 class="card-title">{{ item.name }}</h2>
                 <!--    <a href="#" class="btn btn-primary" v-link="{path:'ArticleItemComponent'}">Read More &rarr; </a> -->
-                    <a class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="navigateTo('ArticleItemComponent')">Add to Cart</a>
+                    <button class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="addToCart(item.id, item.image_url, item.quantity, item.amount, 
+                    item.name, item.cat_id)">Add to Cart</button>
                   </div>
                 </div>
                 
@@ -63,13 +64,24 @@ export default {
     }
   },
   methods:{
-    navigateTo: function (nav) {
-      // Do what you want here.
-      // this.saveTheThing()
-      console.log(nav)
-      this.$router.push({
-          path: nav
-      })
+    addToCart: function (id, name, image_url, quantity = 1, amount, cat_id) {
+      
+      const data = {
+          name: name,
+          quantity: quantity,
+          amount: 1,
+          cat_id: cat_id,
+          menu_id: id
+      }
+      const axios = require('axios');
+        axios.post(`https://pacific-escarpment-86579.herokuapp.com/api/add/cart`,data)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          alert("successfully added!")
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     }
   },
   mounted(){
