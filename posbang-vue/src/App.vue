@@ -37,10 +37,10 @@
           <div class="modal-body">
             <form class="container">
               <div class="form-group">
-                <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" v-model="username" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" v-model="password" class="form-control" placeholder="Password">
               </div>
               <div class="form-check">
                 <label class="form-check-label" style="text-align: justify; display: inherit;">
@@ -52,7 +52,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-primary" v-on:click.prevent="login()">Login</button>
           </div>
         </div>
       </div>
@@ -195,6 +195,23 @@ export default {
       this.$router.push({
           path: nav
       })
+    },
+    login: function () {
+      const { username, password } = this
+      const data = {
+          email: username,
+          password: password
+      }
+      console.log(data);
+      const axios = require('axios');
+        axios.post(`https://pacific-escarpment-86579.herokuapp.com/api/login`,data)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          alert("Successfully Logged In!")
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     }
   }
 }
