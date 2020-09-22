@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" v-on:click.prevent="navigateTo('cart')">Cart</a>
+              <router-link class="nav-link" :to="{name: 'cart'}">Cart</router-link>
             </li>
             <li class="nav-item" data-toggle="modal" data-target="#exampleModal">
               <a class="nav-link cd-signin" href="#">Sign in</a>

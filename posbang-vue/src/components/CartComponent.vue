@@ -19,11 +19,12 @@
             <v-row>
               <v-col v-for="item in items" :key="item" cols="6" >
                 <div class="card mb-4">
-                  <img :src="item.image_url" class="image" alt="lorem" style="height:300px; width:100%">
+                  <img src="http://placehold.it/900x300" class="image" alt="lorem" style="height:300px; width:100%">
                   <div class="card-body">
                     <h2 class="card-title">{{ item.name }}</h2>
+                    <h4 class="card-title">Price: {{ item.amount }}</h4>
+                    <h6 class="card-title">Quantity: {{ item.quantity }}</h6>
                 <!--    <a href="#" class="btn btn-primary" v-link="{path:'ArticleItemComponent'}">Read More &rarr; </a> -->
-                    <a class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="navigateTo('ArticleItemComponent')">Add to Cart</a>
                   </div>
                 </div>
                 
@@ -32,7 +33,12 @@
           </v-container>
           
           <!-- Pagination -->
-
+          
+          <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+              <button class="btn btn-primary justify-content-center mb-4">Checkout</button>
+            </li>
+          </ul>
         </div>
 
         <!-- Sidebar Widgets Column -->
@@ -74,12 +80,11 @@ export default {
   },
   mounted(){
     const axios = require('axios');
-    axios.get(`https://pacific-escarpment-86579.herokuapp.com/api/menu/`+this.$route.params.cat_id)
+    axios.get(`https://pacific-escarpment-86579.herokuapp.com/api/get/cart`)
     .then(response => {
       // JSON responses are automatically parsed.
       console.log(response)
       this.items = response.data;
-      console.log(response.data)
     })
     .catch(e => {
       this.errors.push(e)
