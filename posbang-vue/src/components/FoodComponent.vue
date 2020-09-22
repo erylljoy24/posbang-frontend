@@ -23,8 +23,7 @@
                   <div class="card-body">
                     <h2 class="card-title">{{ item.name }}</h2>
                 <!--    <a href="#" class="btn btn-primary" v-link="{path:'ArticleItemComponent'}">Read More &rarr; </a> -->
-                    <button class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="addToCart(item.id, item.image_url, item.quantity, item.amount, 
-                    item.name, item.cat_id)">Add to Cart</button>
+                    <button class="btn btn-primary" style="color:#ffffff" v-on:click.prevent="addToCart(item.id, item.name, item.amount, item.cat_id)">Add to Cart</button>
                   </div>
                 </div>
                 
@@ -64,12 +63,12 @@ export default {
     }
   },
   methods:{
-    addToCart: function (id, name, image_url, quantity = 1, amount, cat_id) {
+    addToCart: function (id, name, amount, cat_id) {
       
       const data = {
           name: name,
-          quantity: quantity,
-          amount: 1,
+          quantity: 1,
+          amount: amount,
           cat_id: cat_id,
           menu_id: id
       }
